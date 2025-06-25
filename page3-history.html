@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Атомный проект на Урале</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* Основные стили */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: rgb(218, 229, 230);
+            min-height: 100vh;
+            color: #E0E0E0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .content-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .header {
+            width: 100%;
+            background: linear-gradient(90deg, #4a5568, #1a2b3c, #33475b);
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        .header-nav {
+            display: flex;
+            align-items: center;
+        }
+        .header-buttons {
+            margin-right: 3%;
+            width: 130px;
+            height: 42px;
+            margin-left: 7px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 10px;
+            color: #193048;
+            transition: .2s linear;
+            background: #E0E0E0;
+        }
+        .header-buttons:hover {
+            -webkit-transform: rotateZ(7deg);
+            -ms-transform: rotateZ(7deg);
+            transform: rotateZ(7deg);
+        }
+        h1, h2, h5 {
+            color: #193048;
+        }
+        .main {
+            width: 100%;
+            height: auto;
+        }
+        .slider-section{
+            display: flex;
+            align-items: flex-start;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .slider {
+            position: relative;
+            justify-content: left;
+            width: 100%;
+            height: 82px;
+            background-color:#0E0E0E;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 40px;
+            flex-shrink: 0;
+        }
+
+        .years {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            right: 20px;
+            margin-right: 25px;
+            margin-left: 25px;;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .year {
+            font-size: 25px;
+            color: black;
+            cursor: pointer;
+            user-select: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: background-color 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        .year:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .draggable-block{
+            position: absolute;
+            width: 125px;
+            height: 70px;
+            background-color: transparent;
+            box-shadow: inset 0 0 0 4px red;
+            border-radius: 40px; 
+            top: 6px;
+            cursor: grab;
+            transition: all 0.5s ease;
+            z-index: 1;
+        }
+
+
+        
+        .event-content {
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            color: #193048;
+            text-align: left;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .text h3 {
+            margin-top: 0;
+            border-bottom: 2px solid #193048;
+            padding-bottom: 10px;
+        }
+       
+        .flex {
+            margin-top: 50px;
+            width: 100%;
+            height: 500px;
+            display: flex;
+            gap: 5%;
+            align-items: center;
+            flex-wrap: wrap;
+             /* Центрируем содержимое */
+        }
+        .text{
+            color: #193048;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 45%;
+            height: 100%;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+        .photo{
+            background-color: aqua;
+            width: 50%;
+            height: 100%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+        img{
+            min-width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            min-height: 100%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+<body>
+  <div class="header">
+      <nav class="header-nav">
+        <a href="index.html" style="text-decoration: none;"><button class="header-buttons">Главная</button></a>
+        <a href="page2-chrono.html" style="text-decoration: none;"><button class="header-buttons">Персоны</button></a>
+        <a href="page4-results.html" style="text-decoration: none;"><button class="header-buttons">Заключение</button></a>
+      </nav>
+  </div>
+  <div class="container">
+      <div class="content-box">
+          <h1>История атомного проекта на Урале</h1>
+          <h5>Хронология ключевых событий</h5>
+      </div>
+      <div class="main">
+        <div class="flex">
+            <div class="text" id="eventContent">
+                <h3>1945 год</h3>
+            <p>Начало работ по созданию первого советского атомного реактора. Создание Специального комитета для руководства атомным проектом под председательством Л.П. Берии.</p>
+            </div>
+            <div class="photo" id="eventPhoto">
+                <img src="PeByV5BbZkiQca8Qib4x1.jpg">
+            </div>
+        </div>
+        <div class="slider-section">
+            <div class="slider">
+                <div class="years">
+                    <button class="year active" data-index="0">1945г.</button>
+                    <button class="year" data-index="1">1946г.</button>
+                    <button class="year" data-index="2">1948г.</button>
+                    <button class="year" data-index="3">1954г.</button>
+                </div>
+                <div class="draggable-block"></div>
+            </div>
+        </div>
+        
+        
+      </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const years = document.querySelectorAll('.year');
+        const draggableBlock = document.querySelector('.draggable-block');
+        const eventContent = document.getElementById('eventContent');
+        const eventPhoto = document.getElementById("eventPhoto");
+        const slider = document.querySelector('.slider');
+        const yearsContainer = document.querySelector('.years');
+        
+        // Исторические события
+        const events = [
+            {
+                year: "1945 год",
+                title: "Начало атомного проекта",
+                photo: "PeByV5BbZkiQca8Qib4x1.jpg",
+                content: "Начало работ по созданию первого советского атомного реактора. Создание Специального комитета для руководства атомным проектом под председательством Л.П. Берии."
+            },
+            {
+                year: "1946 год",
+                title: "Основание Челябинска-40",
+                photo:"",
+                content: "Основание секретного города Челябинск-40 (ныне Озёрск), где был построен первый промышленный ядерный реактор для производства оружейного плутония."
+            },
+            {
+                year: "1948 год",
+                title: "Запуск первого реактора",
+                photo:"article_00025261.jpg",
+                content: "Запуск первого промышленного ядерного реактора «А» на комбинате №817 в Челябинске-40. Это стало ключевым событием в создании советской атомной бомбы."
+            },
+            {
+                year: "1954 год",
+                title: "Первая АЭС",
+                photo:"",
+                content: "Пуск первой в мире атомной электростанции в Обнинске. Уральские предприятия сыграли важную роль в создании топлива для АЭС."
+            }
+        ];
+        
+        // Рассчитываем позиции для каждой кнопки
+        function calculateButtonPositions() {
+            const positions = [];
+            const yearButtons = yearsContainer.querySelectorAll('.year');
+            
+            yearButtons.forEach(button => {
+                const rect = button.getBoundingClientRect();
+                const sliderRect = slider.getBoundingClientRect();
+                
+                // Рассчитываем позицию относительно слайдера
+                const position = rect.left - sliderRect.left;
+                positions.push(position);
+            });
+            
+            return positions;
+        }
+        
+        // Функция для перемещения блока
+        function moveBlockToYear(index) {
+            const positions = calculateButtonPositions();
+            const yearButtons = yearsContainer.querySelectorAll('.year');
+            
+            if (index >= 0 && index < positions.length) {
+                const button = yearButtons[index];
+                const buttonRect = button.getBoundingClientRect();
+                
+                // Рассчитываем центр кнопки
+                const buttonCenter = positions[index] + buttonRect.width / 2;
+                
+                // Рассчитываем позицию для блока (центрируем)
+                const blockPosition = buttonCenter - draggableBlock.offsetWidth / 2;
+                
+                // Устанавливаем новую позицию
+                draggableBlock.style.left = `${blockPosition}px`;
+                
+                // Обновляем активную кнопку
+                years.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Обновляем контент события
+                updateEventContent(index);
+            }
+        }
+        
+        // Функция обновления контента события
+        function updateEventContent(index) {
+            const event = events[index];
+            eventContent.innerHTML = `
+                <h3>${event.year}</h3>
+                <p><strong>${event.title}</strong>: ${event.content}</p>
+            `;
+            eventPhoto.innerHTML = `
+                <img src="${event.photo}">
+            `;
+            eventContent.classList.remove('animate__animated', 'animate__fadeIn');
+            // Добавляем анимацию с небольшим таймаутом для срабатывания
+            setTimeout(() => {
+                eventContent.classList.add('animate__animated', 'animate__fadeIn');
+            }, 10);
+        }
+        
+        // Добавляем обработчики событий для кнопок
+        years.forEach((yearBtn, index) => {
+            yearBtn.addEventListener('click', () => {
+                moveBlockToYear(index);
+            });
+        });
+        
+        // Обработчик изменения размера окна
+        window.addEventListener('resize', () => {
+            // Перемещаем блок к текущей активной кнопке
+            const activeIndex = [...years].findIndex(btn => btn.classList.contains('active'));
+            if (activeIndex !== -1) {
+                moveBlockToYear(activeIndex);
+            }
+        });
+        
+        // Инициализация: перемещаем блок к первой кнопке
+        moveBlockToYear(0);
+    });
+  </script>
+</body>
+</html>
